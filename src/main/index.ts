@@ -12,7 +12,7 @@ function createWindow(): void {
     autoHideMenuBar: true,
     ...(process.platform === 'linux' ? { icon } : {}),
     webPreferences: {
-      preload: join(__dirname, '../preload/index.js'),
+      preload: join(__dirname, '../preload/index'),
       sandbox: false
     }
   })
@@ -33,6 +33,9 @@ function createWindow(): void {
   } else {
     mainWindow.loadFile(join(__dirname, '../renderer/index.html'))
   }
+  
+  // 打开开发者工具
+  mainWindow.webContents.openDevTools();
 }
 
 // This method will be called when Electron has finished
